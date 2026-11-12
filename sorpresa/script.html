@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa</title>
+</head>
+<body>
+        <h1>Trivia de Conocimientos Generales</h1>
+        <h2>1. ¿En qué año nació el P. Dionisio Pamplona?</h2>
+        <input type="radio" name="p1" value="a"> 1865<br>
+        <input type="radio" name="p1" value="b"> 1858<br>
+        <input type="radio" name="p1" value="c"> 1870<br>
+        <h2>2. ¿En qué país fue rector y párroco de la comunidad de San José de Calasanz?</h2>
+        <input type="radio" name="p2" value="a"> Italia<br>
+        <input type="radio" name="p2" value="b"> España<br>
+        <input type="radio" name="p2" value="c"> Argentina<br>
+        <h2>3. ¿En qué año fue beatificado por el papa Juan Pablo II?</h2>
+        <input type="radio" name="p3" value="a"> 1998<br>
+        <input type="radio" name="p3" value="b"> 2000<br>
+        <input type="radio" name="p3" value="c"> 1995<br>
+        <h2>4. ¿A qué se dedicó principalmente durante su vida religiosa?</h2>
+        <input type="radio" name="p4" value="a"> A la educación y enseñanza de niños y jóvenes<br>
+        <input type="radio" name="p4" value="b"> A la medicina y al cuidado de enfermos<br>
+        <input type="radio" name="p4" value="c">  A la construcción de iglesias<br>
+        <h2>5. ¿En qué fecha fue ejecutado Dionisio Pamplona?</h2>
+        <input type="radio" name="p5" value="a"> 4 de noviembre<br>
+        <input type="radio" name="p5" value="b"> 26 de marzo<br>
+        <input type="radio" name="p5" value="c"> 25 de julio<br>
+        <br>
+        <button id="comprobar" type="button">Comprobar</button>
+        <button id="reiniciar" type="button">Reiniciar</button>
+        <p id="resultado"></p>
+        <script>
+        document.getElementById("Comprobar").addEventListener("click", function() { 
+        let puntaje = 0;
+        let p1 = document.querySelector('input[name="p1"]:checked');
+        let p2 = document.querySelector('input[name="p2"]:checked');
+        let p3 = document.querySelector('input[name="p3"]:checked');
+        let p4 = document.querySelector('input[name="p4"]:checked');
+        let p5 = document.querySelector('input[name="p5"]:checked');
+    if (!p1 || !p2 || !p3 || !p4 || !p5) {
+        document.getElementById("resultado").innerHTML =
+        "Debes responder todas las preguntas.";
+        return;
+        }
+        // Respuestas correctas
+        if (p1.value === "b") puntaje++;
+        if (p2.value === "c") puntaje++;
+        if (p3.value === "c") puntaje++;
+        if (p4.value === "a") puntaje++;
+        if (p5.value === "c") puntaje++;
+        let mensaje = "<h3>Resultado: " + puntaje + "/5 puntos</h3>";
+        if (puntaje === 5) {
+        mensaje += "¡Felicitaciones! Has respondido correctamente todas las preguntas.";
+        } else if (puntaje === 4) {
+        mensaje += "Buen intento. Solo te equivocaste en una pregunta.";
+        } else {
+        mensaje += "Te invito a intentarlo nuevamente.";
+        }
+        document.getElementById("resultado").innerHTML = mensaje;
+        });
+        document.getElementById("reiniciar").addEventListener("click", function() {
+        let opciones = document.querySelectorAll('input[type="radio"]');
+        for (let opcion of opciones) {
+        opcion.checked = false;
+        }
+        document.getElementById("resultado").innerHTML = "";
+        });
+
+</script>
+</body>
+</html>
